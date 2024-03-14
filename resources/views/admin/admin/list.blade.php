@@ -47,9 +47,33 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th >created by date</th>
+                                        <th >Action </th>
                                     </tr>
+
                                 </thead>
-                           
+                                <tbody>
+                                    @foreach ($getRecourd as $value )
+<tr>
+
+                                    <td>{{$value->id}}</td>
+                                    <td>{{$value->name}}</td>
+                                    <td >{{$value->email}}</td>
+                                    <td >{{$value-> created_at}} </td>
+                                    <td >
+                                        <a href="{{url('admin/admin/edit/'.$value->id)}}" class="btn btn-primary">edit</a>
+                                        <a href="{{url('admin/admin/delete/'.$value->id)}}" class="btn btn-danger"> delete</a>
+
+                                     </td>
+
+                                </tr>
+
+                                    @endforeach
+
+
+
+                                </tbody>
+
+
                             </table>
                         </div>
                         <!-- /.card-body -->

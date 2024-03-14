@@ -3,10 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
@@ -42,6 +42,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    static public function  getAdmin()
+    {
+        return self::select('users.*')
+        ->where('user_type', '=', 1)
+        ->where('is_delete', '=', 0)
+
+        ->orderBy('id', 'desc')
+        ->get();
+    }
+
+    static public function  getSingle($id)
+    {
+        return self::find($id);
+
+    }
+
+
     static public function  getEmailSingle($email)
     {
         return  User::where('email', $email)->first();
@@ -50,8 +68,6 @@ class User extends Authenticatable
     {
         return  User::where('remember_token', $remember_token)->first();
     }
-    public function getAdmin()
-    {
-        return self::select('user.*')->where('user_type', '=')->orderBy('id','desc')->get();
-    }
+
+
 }
