@@ -4,6 +4,8 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -39,12 +41,33 @@ Route::get('/admin/admin/list', function () {
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard']);
+    //Admin Crud
     Route::get('/admin/admin/list', [AdminController::class, 'list']);
     Route::get('/admin/admin/add', [AdminController::class, 'add']);
     Route::post('/admin/admin/add', [AdminController::class, 'insert']);
     Route::get('/admin/admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('/admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('/admin/admin/delete/{id}', [AdminController::class, 'delete']);
+
+//Class URL
+Route::get('/admin/class/list', [ClassController::class, 'list']);
+Route::get('/admin/class/add', [ClassController::class, 'add']);
+Route::post('/admin/class/add', [ClassController::class, 'insert']);
+Route::get('/admin/class/edit/{id}', [ClassController::class, 'edit']);
+Route::post('/admin/class/edit/{id}', [ClassController::class, 'update']);
+Route::get('/admin/class/delete/{id}', [ClassController::class, 'delete']);
+
+//Subjects URL
+Route::get('/admin/subjects/list', [SubjectController::class, 'list']);
+Route::get('/admin/subjects/add', [SubjectController::class, 'add']);
+Route::post('/admin/subjects/add', [SubjectController::class, 'insert']);
+Route::get('/admin/subjects/edit/{id}', [SubjectController::class, 'edit']);
+Route::post('/admin/subjects/edit/{id}', [SubjectController::class, 'update']);
+Route::get('/admin/subjects/delete/{id}', [SubjectController::class, 'delete']);
+
+
+
+
 
 
 

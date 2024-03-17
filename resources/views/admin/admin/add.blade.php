@@ -14,7 +14,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1>Add Admin</h1>
-                          
+
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -25,23 +25,20 @@
                     <div class="row">
                         <!-- left column -->
                         <div class="col-md-12">
-
                             <div class="card card-primary">
-
                                 <form method="post" action="">
-
                                     {{ csrf_field() }}
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" class="form-control" placeholder="Name"required
                                                 name="name">
-
                                         </div>
                                         <div class="form-group">
                                             <label>Email address</label>
                                             <input type="email" class="form-control" name="email"required
                                                 placeholder="Enter email">
+                                               <div style="color: red">{{$errors->first('email')}}</div>
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>

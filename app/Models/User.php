@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -45,18 +46,33 @@ class User extends Authenticatable
 
     static public function  getAdmin()
     {
-        return self::select('users.*')
+        $return= self::select('users.*')
         ->where('user_type', '=', 1)
-        ->where('is_delete', '=', 0)
-
-        ->orderBy('id', 'desc')
-        ->get();
+        ->where('is_delete', '=', 0);
+    if (!empty(Request::get('email')))
+    {
+        $return = $return->where('email','like','%'.Request::get('email').'%');
     }
+    if (!empty(Request::get('name')))
+    {
+        $return = $return->where('name','like','%'.Request::get('name').'%');
+    }
+    if (!empty(Request::get('created_at')))
+    {
+        $return = $return->whereDate('created_at','like','%'.Request::get('created_at').'%');
+    }
+        $return=$return ->orderBy('id', 'desc')
+        // ->get()
+        ->paginate(8);
+        return $return;
+    }
+
+
+
 
     static public function  getSingle($id)
     {
         return self::find($id);
-
     }
 
 
