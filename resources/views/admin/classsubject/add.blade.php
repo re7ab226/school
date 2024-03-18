@@ -10,8 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add class</h1>
-
+                            <h1>Add Assign </h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -27,32 +26,38 @@
                                     {{ csrf_field() }}
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label> Class Name</label>
-                                            <input type="text" class="form-control" placeholder="Name"required
-                                                name="name">
+                                            <label> name</label>
+                                            <select name="class_id"class="form-control">
+                                                <option value="">select</option>
+                                                @foreach ($getclass as $class)
+                                                    <option value="{{ $class->id }}"> {{ $class->name }}</option>
+                                                @endforeach
+
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label> type</label>
-                                         <select name="type"class="form-control">
-                                            <option value="theory">theory</option></option>
-                                            <option value="Practice"> Practice</option>
-                                         </select>
-                                    </div>
+                                            <label>
+                                                Subject name
+                                            </label>
+                                            @foreach ($getsubject as $subjects)
+                                                <div style="font-weight: normal">
+                                                    <input type='checkbox' value="{{ $subjects->id }}"
+                                                    name="subjects_id[]">{{ $subjects->name }}</input>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                         <div class="form-group">
                                             <label> status</label>
-                                         <select name="status"class="form-control">
-                                            <option value="0">Active</option>
-                                            <option value="1"> In Active</option>
+                                            <select name="status"class="form-control">
+                                                <option value="0">Active</option>
+                                                <option value="1"> In Active</option>
 
-                                         </select>
-
-
-                                    </div>
-                                    <!-- /.card-body -->
-
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
+                                            </select>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
                                 </form>
                             </div>
                             <!-- /.card -->

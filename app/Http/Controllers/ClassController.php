@@ -30,19 +30,7 @@ class ClassController extends Controller
 
 
     }
-    public function edit($id){
-
-        $data['getRecord'] = ClassModel::getSingle($id);
-
-        if(!empty($data['getRecord']))
-            {
-            $data['header_title']=" Edit class  ";
-            return view ('admin.class.edit',$data);
-            }
-                else{
-                    abort(404);
-                }
-    }
+     
     public function update( $id ,Request $request){
         // dd($request->all());
 

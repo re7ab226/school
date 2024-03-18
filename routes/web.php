@@ -1,12 +1,14 @@
 <?php
 
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\classsubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,12 +44,12 @@ Route::get('/admin/admin/list', function () {
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard']);
     //Admin Crud
-    Route::get('/admin/admin/list', [AdminController::class, 'list']);
-    Route::get('/admin/admin/add', [AdminController::class, 'add']);
-    Route::post('/admin/admin/add', [AdminController::class, 'insert']);
-    Route::get('/admin/admin/edit/{id}', [AdminController::class, 'edit']);
-    Route::post('/admin/admin/edit/{id}', [AdminController::class, 'update']);
-    Route::get('/admin/admin/delete/{id}', [AdminController::class, 'delete']);
+    Route::get('/admin/admin/list',[AdminController::class, 'list']);
+    Route::get('/admin/admin/add',[AdminController::class, 'add']);
+    Route::post('/admin/admin/add',[AdminController::class, 'insert']);
+    Route::get('/admin/admin/edit/{id}',[AdminController::class, 'edit']);
+    Route::post('/admin/admin/edit/{id}',[AdminController::class, 'update']);
+    Route::get('/admin/admin/delete/{id}',[AdminController::class, 'delete']);
 
 //Class URL
 Route::get('/admin/class/list', [ClassController::class, 'list']);
@@ -65,6 +67,13 @@ Route::get('/admin/subjects/edit/{id}', [SubjectController::class, 'edit']);
 Route::post('/admin/subjects/edit/{id}', [SubjectController::class, 'update']);
 Route::get('/admin/subjects/delete/{id}', [SubjectController::class, 'delete']);
 
+//Assign  URL
+Route::get('/admin/classsubject/list', [classsubjectController::class, 'list']);
+Route::get('/admin/classsubject/add', [classsubjectController::class, 'add']);
+Route::post('/admin/classsubject/add', [classsubjectController::class, 'insert']);
+Route::get('/admin/classsubject/edit/{id}', [classsubjectController::class, 'edit']);
+Route::post('/admin/classsubject/edit/{id}', [classsubjectController::class, 'update']);
+Route::get('/admin/classsubject/delete/{id}', [classsubjectController::class, 'delete']);
 
 
 

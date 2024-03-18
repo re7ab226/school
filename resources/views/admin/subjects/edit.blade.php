@@ -13,7 +13,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Edit Class</h1>
+                            <h1>Edit Subject</h1>
 
                         </div>
                     </div>
@@ -38,10 +38,12 @@
                                                 name="name">
                                         </div>
                                         <div class="form-group">
-                                            <label> type Name</label>
-                                            <input type="text"value='{{$getRecord->type}}' class="form-control" placeholder="Name"required
-                                                name="type">
-                                        </div>
+                                            <label> type</label>
+                                         <select name="type"class="form-control">
+                                            <option {{ ($getRecord->type == 'theory') ? 'selected' : '' }} value="theory">theory</option></option>
+                                            <option {{ ($getRecord->type == 'Practice') ? 'selected' : '' }} value="Practice"> Practice</option>
+                                         </select>
+                                    </div>
                                               <div class="form-group">
                                             <label > status</label>
                                          <select name="status"class="form-control">

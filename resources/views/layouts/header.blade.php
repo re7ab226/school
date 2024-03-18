@@ -163,6 +163,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/classsubject/list') }}" class="nav-link {{ Request::segment(2) == 'classsubject' ? 'active' : '' }}">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Assign School
+              </p>
+            </a>
+          </li>
 
 
           <li class="nav-item">

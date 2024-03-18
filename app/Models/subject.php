@@ -18,6 +18,10 @@ class subject extends Model
         {
             $return = $return->where('school_subjects.name','like','%'.Request::get('name').'%');
         }
+        if (!empty(Request::get('type')))
+        {
+            $return = $return->where('school_subjects.type','like','%'.Request::get('type').'%');
+        }
         if (!empty(Request::get('created_at')))
         {
             $return = $return->whereDate('school_subjects.created_at','like','%'.Request::get('created_at'));
@@ -32,5 +36,28 @@ class subject extends Model
     {
         return self::find($id);
     }
+    static public function getsubject(){
+        $return= self::select('school_subjects.*','users.name as created_by_name')
+        ->join('users', 'users.id', 'school_subjects.created_by');
+        if (!empty(Request::get('name')))
+        {
+            $return = $return->where('school_subjects.name','like','%'.Request::get('name').'%');
+        }
+        if (!empty(Request::get('type')))
+        {
+            $return = $return->where('school_subjects.type','like','%'.Request::get('type').'%');
+        }
+        if (!empty(Request::get('created_at')))
+        {
+            $return = $return->whereDate('school_subjects.created_at','like','%'.Request::get('created_at'));
+        }
+        $return = $return->where('school_subjects.is_deleted', '=', 0)
+        ->orderBy('school_subjects.id', 'desc')
+        ->paginate(5);
 
+        return $return;
+    }
+
+
+    
 }
