@@ -70,6 +70,6 @@ class classsubjectController extends Controller
       $save->is_deleted = 1;
       $save->save();
     //   return redirect('admin/class/list')->with('success', 'Admin deleted successfully');
-      return redirect()->back()->with('success', 'Admin deleted successfully');
-  }
+    return redirect()->back()->with('success', 'Assign  deleted successfully');
+}
 }
